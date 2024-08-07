@@ -1,38 +1,14 @@
-[gd_scene load_steps=9 format=3 uid="uid://sg5usi6f3bk6"]
+[gd_scene load_steps=6 format=3 uid="uid://sg5usi6f3bk6"]
 
-[ext_resource type="Texture2D" uid="uid://cs780b4w58fcf" path="res://assets/sprites/knight.png" id="1_0giwo"]
 [ext_resource type="Script" path="res://scripts/player.gd" id="1_vumrq"]
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_0cld2"]
-atlas = ExtResource("1_0giwo")
-region = Rect2(0, 0, 32, 32)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_41x2n"]
-atlas = ExtResource("1_0giwo")
-region = Rect2(32, 0, 32, 32)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_kjjq5"]
-atlas = ExtResource("1_0giwo")
-region = Rect2(64, 0, 32, 32)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_gp3os"]
-atlas = ExtResource("1_0giwo")
-region = Rect2(96, 0, 32, 32)
+[ext_resource type="Texture2D" uid="uid://bygmhco0lup35" path="res://assets/sprites/selfmade/vermin queen_cockroach2.png" id="2_tdod0"]
+[ext_resource type="Texture2D" uid="uid://cg1l1vt1rc4na" path="res://assets/sprites/selfmade/vermin queen_cockroach2_shadow.png" id="3_pq1b3"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_hiuol"]
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_0cld2")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_41x2n")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_kjjq5")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_gp3os")
+"texture": ExtResource("2_tdod0")
 }],
 "loop": true,
 "name": &"idle",
@@ -46,9 +22,17 @@ radius = 5.0
 collision_layer = 2
 script = ExtResource("1_vumrq")
 
+[node name="shadow" type="Sprite2D" parent="."]
+z_index = 2
+position = Vector2(0, -5)
+scale = Vector2(0.136932, 0.136932)
+texture = ExtResource("3_pq1b3")
+
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+visibility_layer = 2
 z_index = 5
-position = Vector2(0, -12)
+position = Vector2(0, -5)
+scale = Vector2(0.136932, 0.136932)
 sprite_frames = SubResource("SpriteFrames_hiuol")
 animation = &"idle"
 autoplay = "idle"
