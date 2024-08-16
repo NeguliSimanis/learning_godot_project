@@ -1,12 +1,11 @@
-[gd_scene load_steps=15 format=3 uid="uid://d3suonq3ib8oe"]
+[gd_scene load_steps=11 format=3 uid="uid://d3suonq3ib8oe"]
 
 [ext_resource type="PackedScene" uid="uid://sg5usi6f3bk6" path="res://scenes/player.tscn" id="1_k4ri2"]
 [ext_resource type="Texture2D" uid="uid://bj17pevyw7th2" path="res://assets/sprites/world_tileset.png" id="1_yor0c"]
 [ext_resource type="Texture2D" uid="uid://33uj80j18c5t" path="res://assets/sprites/mainlevbuild.png" id="2_5tsfi"]
-[ext_resource type="PackedScene" uid="uid://bd2ag5wc1cpfx" path="res://scenes/platform.tscn" id="3_6mkyn"]
-[ext_resource type="PackedScene" uid="uid://brbuprvn108do" path="res://scenes/coin.tscn" id="4_5pghv"]
 [ext_resource type="PackedScene" uid="uid://bpel4ulo2ou3w" path="res://scenes/killzone.tscn" id="5_hjutg"]
 [ext_resource type="PackedScene" uid="uid://dl1y4axxlo541" path="res://scenes/enemy.tscn" id="6_vtqmw"]
+[ext_resource type="PackedScene" uid="uid://43gq8w1wap4x" path="res://scenes/food_pickup.tscn" id="8_7l6w4"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_cyd7o"]
 texture = ExtResource("1_yor0c")
@@ -3549,44 +3548,6 @@ sources/1 = SubResource("TileSetAtlasSource_ra48i")
 
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_uglw0"]
 
-[sub_resource type="Animation" id="Animation_rbt6g"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath(".:position")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector2(307, -220)]
-}
-
-[sub_resource type="Animation" id="Animation_xwqmv"]
-resource_name = "platform_move"
-length = 1.5
-loop_mode = 2
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath(".:position")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 1.5),
-"transitions": PackedFloat32Array(1, 1),
-"update": 0,
-"values": [Vector2(307, -220), Vector2(398, -220)]
-}
-
-[sub_resource type="AnimationLibrary" id="AnimationLibrary_kxrwe"]
-_data = {
-"RESET": SubResource("Animation_rbt6g"),
-"platform_move": SubResource("Animation_xwqmv")
-}
-
 [node name="Game" type="Node2D"]
 
 [node name="TileMap" type="TileMap" parent="."]
@@ -3620,39 +3581,11 @@ position = Vector2(0, 89)
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Killzone"]
 shape = SubResource("WorldBoundaryShape2D_uglw0")
 
-[node name="Coins" type="Node" parent="."]
-
-[node name="Coin" parent="Coins" instance=ExtResource("4_5pghv")]
-position = Vector2(103, -58)
-
-[node name="Coin2" parent="Coins" instance=ExtResource("4_5pghv")]
-position = Vector2(272, -220)
-
-[node name="Coin3" parent="Coins" instance=ExtResource("4_5pghv")]
-position = Vector2(440, -240)
-
-[node name="Platforms" type="Node" parent="."]
-
-[node name="Platform" parent="Platforms" instance=ExtResource("3_6mkyn")]
-position = Vector2(210, -169)
-
-[node name="Platform3" parent="Platforms" instance=ExtResource("3_6mkyn")]
-position = Vector2(-114, 28)
-
-[node name="Platform2" parent="Platforms" instance=ExtResource("3_6mkyn")]
-position = Vector2(31, -43)
-
-[node name="Coin" parent="Platforms/Platform2" instance=ExtResource("4_5pghv")]
-position = Vector2(0, -15)
-
-[node name="Platform move" parent="Platforms" instance=ExtResource("3_6mkyn")]
-position = Vector2(307, -220)
-
-[node name="AnimationPlayer" type="AnimationPlayer" parent="Platforms/Platform move"]
-libraries = {
-"": SubResource("AnimationLibrary_kxrwe")
-}
-autoplay = "platform_move"
-
 [node name="Enemy" parent="." instance=ExtResource("6_vtqmw")]
 position = Vector2(328, -80)
+
+[node name="Pickups" type="Node" parent="."]
+
+[node name="food_pickup" parent="Pickups" instance=ExtResource("8_7l6w4")]
+z_index = 1
+position = Vector2(-144, -46)
