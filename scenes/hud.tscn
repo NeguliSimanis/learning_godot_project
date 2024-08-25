@@ -1,0 +1,18 @@
+[gd_scene load_steps=3 format=3 uid="uid://cqcg8plaeudo4"]
+
+[ext_resource type="FontFile" uid="uid://bepn3pap0a1vv" path="res://assets/fonts/PixelOperator8-Bold.ttf" id="1_3vpl1"]
+[ext_resource type="Script" path="res://scripts/hud.gd" id="1_6mbs8"]
+
+[node name="HUD" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+script = ExtResource("1_6mbs8")
+
+[node name="FoodLabel" type="Label" parent="."]
+layout_mode = 0
+offset_left = 34.0
+offset_top = 27.0
+offset_right = 134.0
+offset_bottom = 50.0
+theme_override_fonts/font = ExtResource("1_3vpl1")
+text = "FOOD: 0"
